@@ -1367,12 +1367,14 @@ void TurnAllocateRequest::Prepare(StunMessage* request) {
 }
 
 void TurnAllocateRequest::OnSent() {
+  RTC_LOG(LS_ERROR) << "%%% FLUFF OnSent() to " << port_->server_address_.address.ToString() << " proto=" << port_->server_address_.proto << " port=" << port_->ToString();
   RTC_LOG(LS_INFO) << port_->ToString() << ": TURN allocate request sent, id="
                    << rtc::hex_encode(id());
   StunRequest::OnSent();
 }
 
 void TurnAllocateRequest::OnResponse(StunMessage* response) {
+  RTC_LOG(LS_ERROR) << "%%% FLUFF OnResponse() from " << port_->server_address_.address.ToString() << " proto=" << port_->server_address_.proto << " port=" << port_->ToString();
   RTC_LOG(LS_INFO) << port_->ToString()
                    << ": TURN allocate requested successfully, id="
                    << rtc::hex_encode(id())
@@ -1448,6 +1450,7 @@ void TurnAllocateRequest::OnErrorResponse(StunMessage* response) {
 }
 
 void TurnAllocateRequest::OnTimeout() {
+  RTC_LOG(LS_ERROR) << "%%% FLUFF Timeout to " << port_->server_address_.address.ToString() << " proto=" << port_->server_address_.proto << " port=" << port_->ToString();
   RTC_LOG(LS_INFO) << port_->ToString() << ": TURN allocate request "
                    << rtc::hex_encode(id()) << " timeout";
   port_->OnAllocateRequestTimeout();
