@@ -39,6 +39,10 @@ vars = {
 }
 
 deps = {
+  # RingRTC change to use a custom version of opus
+  'src/ringrtc/opus/src':
+    'https://github.com/jim-signal/opus.git@fe9218059e17fcbf134f837433d46beac39fb511',
+
   # TODO(kjellander): Move this to be Android-only.
   'src/base':
     'https://chromium.googlesource.com/chromium/src/base@4a17a70520935f05e354de004dcb44c7b1df534f',
