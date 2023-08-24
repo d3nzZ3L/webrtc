@@ -572,6 +572,7 @@ public class PeerConnection {
      * See: https://www.chromestatus.com/feature/6269234631933952
      */
     public boolean offerExtmapAllowMixed;
+    public boolean enableDtls; // Fork
 
     // TODO(deadbeef): Instead of duplicating the defaults here, we should do
     // something to pick up the defaults from C++. The Objective-C equivalent
@@ -616,6 +617,7 @@ public class PeerConnection {
       allowCodecSwitching = null;
       enableImplicitRollback = false;
       offerExtmapAllowMixed = true;
+      enableDtls = false; // Fork
     }
 
     @CalledByNative("RTCConfiguration")
@@ -836,6 +838,12 @@ public class PeerConnection {
     boolean getOfferExtmapAllowMixed() {
       return offerExtmapAllowMixed;
     }
+    // MARK: - Fork begin
+    @CalledByNative("RTCConfiguration")
+    boolean getEnableDtls() {
+      return enableDtls;
+    }
+    // MARK: Fork end -
   };
 
   private final List<MediaStream> localStreams = new ArrayList<>();

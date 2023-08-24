@@ -277,6 +277,7 @@ void JavaToNativeRTCConfiguration(
       Java_RTCConfiguration_getOfferExtmapAllowMixed(jni, j_rtc_config);
   rtc_config->enable_implicit_rollback =
       Java_RTCConfiguration_getEnableImplicitRollback(jni, j_rtc_config);
+  rtc_config->enable_dtls = Java_RTCConfiguration_getEnableDtls(jni, j_rtc_config); // Fork
 
   ScopedJavaLocalRef<jstring> j_turn_logging_id =
       Java_RTCConfiguration_getTurnLoggingId(jni, j_rtc_config);

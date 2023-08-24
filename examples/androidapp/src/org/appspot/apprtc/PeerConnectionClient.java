@@ -603,6 +603,7 @@ public class PeerConnectionClient {
     rtcConfig.bundlePolicy = PeerConnection.BundlePolicy.MAXBUNDLE;
     rtcConfig.rtcpMuxPolicy = PeerConnection.RtcpMuxPolicy.REQUIRE;
     rtcConfig.continualGatheringPolicy = PeerConnection.ContinualGatheringPolicy.GATHER_CONTINUALLY;
+    rtcConfig.enableDtls = true;
     // Use ECDSA encryption.
     rtcConfig.keyType = PeerConnection.KeyType.ECDSA;
     rtcConfig.sdpSemantics = PeerConnection.SdpSemantics.UNIFIED_PLAN;
