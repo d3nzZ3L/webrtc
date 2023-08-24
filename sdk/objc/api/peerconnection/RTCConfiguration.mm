@@ -63,6 +63,7 @@
 @synthesize iceUnwritableTimeout = _iceUnwritableTimeout;
 @synthesize iceUnwritableMinChecks = _iceUnwritableMinChecks;
 @synthesize iceInactiveTimeout = _iceInactiveTimeout;
+@synthesize enableDtls = _enableDtls; // Fork
 
 - (instancetype)init {
   // Copy defaults.
@@ -71,6 +72,19 @@
   config.sdp_semantics = webrtc::SdpSemantics::kPlanB_DEPRECATED;
   return [self initWithNativeConfiguration:config];
 }
+
+// MARK: - Fork begin
++ (instancetype)dtlsInitializer {
+  RTCConfiguration *rtcConfig = [[RTCConfiguration alloc] init];
+  // Copy defaults.
+  webrtc::PeerConnectionInterface::RTCConfiguration config;
+  // RingRTC Change to use "Plan B"
+  config.sdp_semantics = webrtc::SdpSemantics::kPlanB_DEPRECATED;
+  config.enable_dtls = true;
+  rtcConfig = [rtcConfig initWithNativeConfiguration:config];
+  return rtcConfig;
+}
+// MARK: Fork end -
 
 - (instancetype)initWithNativeConfiguration:
     (const webrtc::PeerConnectionInterface::RTCConfiguration &)config {
@@ -159,6 +173,7 @@
     _iceInactiveTimeout = config.ice_inactive_timeout.has_value() ?
         [NSNumber numberWithInt:*config.ice_inactive_timeout] :
         nil;
+    _enableDtls = config.enable_dtls; // Fork
   }
   return self;
 }
@@ -307,6 +322,7 @@
   if (_iceInactiveTimeout != nil) {
     nativeConfig->ice_inactive_timeout = absl::optional<int>(_iceInactiveTimeout.intValue);
   }
+  nativeConfig->enable_dtls = _enableDtls; // Fork
   return nativeConfig.release();
 }
 

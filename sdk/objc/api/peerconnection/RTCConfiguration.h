@@ -260,8 +260,10 @@ RTC_OBJC_EXPORT
  * default value in the ICE implementation if set.
  */
 @property(nonatomic, copy, nullable) NSNumber *iceInactiveTimeout;
+@property(nonatomic, assign) BOOL enableDtls; // Fork
 
 - (instancetype)init;
++ (instancetype)dtlsInitializer; // Fork
 
 @end
 
