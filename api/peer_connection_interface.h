@@ -458,6 +458,7 @@ class RTC_EXPORT PeerConnectionInterface : public rtc::RefCountInterface {
 
     // Use new combined audio/video bandwidth estimation?
     absl::optional<bool> combined_audio_video_bwe;
+    bool enable_dtls = false; // Fork
 
 #if defined(WEBRTC_FUCHSIA)
     // TODO(bugs.webrtc.org/11066): Remove entirely once Fuchsia does not use.

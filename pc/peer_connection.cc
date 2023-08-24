@@ -273,7 +273,7 @@ bool DtlsEnabled(const PeerConnectionInterface::RTCConfiguration& configuration,
                  const PeerConnectionDependencies& dependencies) {
   // RingRTC change to always disable DTLS.
   // return false; Fork commented
-  return true;
+  return configuration.enable_dtls;
 }
 
 }  // namespace
